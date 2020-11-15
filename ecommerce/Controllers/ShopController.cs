@@ -7,6 +7,7 @@ using ecommerce.Models;
 using Newtonsoft.Json;
 using System.IO;
 using System.Data;
+using System.Web.Routing;
 
 namespace ecommerce.Controllers
 {
@@ -36,18 +37,28 @@ namespace ecommerce.Controllers
         [Route("shop/privacy_policy")]
         public ActionResult CMS()
         {
-            string CurrentAction = (string)this.RouteData.Values["action"];
-            string text = string.Empty;
-            if (CurrentAction == "shipping_information")
-                text = "shipping";
-            else if (CurrentAction == "exchange")
-                text = "";
-            else if (CurrentAction == "terms_conditions")
-                text = "";
+            string CurrentAction = Request.RawUrl;
+            if (CurrentAction == "/shop/shipping_information")
+            {
+                ViewBag.Title = "Shipping Information";
+                ViewBag.text = "shipping";
+            }
+            else if (CurrentAction == "/shop/exchange")
+            {
+                ViewBag.Title = "Return & Exchange";
+                ViewBag.text = "exchange";
+            }
+            else if (CurrentAction == "/shop/terms_conditions")
+            {
+                ViewBag.Title = "Terms & Conditions";
+                ViewBag.text = "terms and conditions";
+            }
             else
-                text = "";
-
-            return View(text);
+            {
+                ViewBag.Title = "Privacy Policy";
+                ViewBag.text = "privacy policy";
+            }
+            return View();
         }
         public ActionResult Login()
         {
@@ -64,7 +75,7 @@ namespace ecommerce.Controllers
         }
 
         [HttpGet]
-        [Route("shop/DirectProducts/{cat}")]
+        [Route("shop/products/{cat}")]
         public ActionResult DirectProducts(string cat)
         {
             List<Products> pp = new List<Models.Products>();

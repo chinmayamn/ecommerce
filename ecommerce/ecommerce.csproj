@@ -285,6 +285,7 @@
     <Content Include="Views\Shop\Checkout.cshtml" />
     <Content Include="Views\Shop\ProductDetail.cshtml" />
     <Content Include="Views\Shop\Login.cshtml" />
+    <Content Include="Views\Shop\CMS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
