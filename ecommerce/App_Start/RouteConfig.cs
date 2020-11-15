@@ -15,15 +15,14 @@ namespace ecommerce
 
             routes.MapRoute(
                 name: "app",
-                url: "Home/directproducts/{name}",
-                defaults: new { controller = "Home", action = "directproducts", id = UrlParameter.Optional }
+                url: "shop/directproducts/{name}",
+                defaults: new { controller = "Shop", action = "directproducts", id = UrlParameter.Optional }
             );
-
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Shop", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

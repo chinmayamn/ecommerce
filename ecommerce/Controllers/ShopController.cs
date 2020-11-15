@@ -10,7 +10,7 @@ using System.Data;
 
 namespace ecommerce.Controllers
 {
-    public class HomeController : Controller
+    public class ShopController : Controller
     {
 
         public ActionResult Index()
@@ -30,6 +30,25 @@ namespace ecommerce.Controllers
             return View();
         }
 
+        [Route("shop/shipping_information")]
+        [Route("shop/exchange")]
+        [Route("shop/terms_conditions")]
+        [Route("shop/privacy_policy")]
+        public ActionResult CMS()
+        {
+            string CurrentAction = (string)this.RouteData.Values["action"];
+            string text = string.Empty;
+            if (CurrentAction == "shipping_information")
+                text = "shipping";
+            else if (CurrentAction == "exchange")
+                text = "";
+            else if (CurrentAction == "terms_conditions")
+                text = "";
+            else
+                text = "";
+
+            return View(text);
+        }
         public ActionResult Login()
         {
 
@@ -45,7 +64,7 @@ namespace ecommerce.Controllers
         }
 
         [HttpGet]
-        [Route("Home/DirectProducts/{cat}")]
+        [Route("shop/DirectProducts/{cat}")]
         public ActionResult DirectProducts(string cat)
         {
             List<Products> pp = new List<Models.Products>();
@@ -57,7 +76,7 @@ namespace ecommerce.Controllers
         }
 
         [HttpGet]
-        [Route("Home/Products")]
+        [Route("shop/Products")]
         public ActionResult Products()
         {
             List<Products> pp = new List<Models.Products>();
